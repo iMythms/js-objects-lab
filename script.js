@@ -36,6 +36,10 @@ Exercise 3
 Solve Exercise 3 here:
 */
 
+game.difficulty = 'Medium'
+console.log('Exercise 3:')
+console.log(game)
+
 /*
 Exercise 4
 1. Select a starter Pokémon from the `pokemon` array. Remember, a starter Pokémon's `starter` property is true.
@@ -45,14 +49,10 @@ Exercise 4
 Solve Exercise 4 here:
 */
 
-/*
-Exercise 5
-1. Choose three more Pokémon from the `pokemon` array and add them to your party.
-2. Consider different attributes like 'type' or 'HP' for your selection. Which array method will you use to add them?
-
-
-Solve Exercise 5 here:
-*/
+const starterPokemon = pokemon.find((poke) => poke.starter === true)
+game.party.push(starterPokemon)
+console.log('Exercise 4:')
+console.log(game.party)
 
 /*
 Exercise 5
@@ -62,6 +62,20 @@ Exercise 5
 
 Solve Exercise 5 here:
 */
+
+const fireTypePokemon = pokemon.find(
+	(poke) => poke.type === 'fire' && poke.hp > 70
+)
+const waterTypePokemon = pokemon.find(
+	(poke) => poke.type === 'water' && poke.hp > 70
+)
+const electricTypePokemon = pokemon.find(
+	(poke) => poke.type === 'electric' && poke.hp > 70
+)
+
+game.party.push(fireTypePokemon, waterTypePokemon, electricTypePokemon)
+console.log('Exercise 5:')
+console.log(game.party)
 
 /*
 Exercise 6
@@ -71,6 +85,15 @@ Exercise 6
 
 Solve Exercise 6 here:
 */
+
+game.gyms.forEach((gym) => {
+	if (gym.difficulty < 3) {
+		gym.completed = true
+	}
+})
+
+console.log('Exercise 6:')
+console.log(game.gyms)
 
 /*
 Exercise 7
@@ -89,6 +112,13 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
+if (game.party[0].number === 1) {
+	game.party[0] = pokemon.find((poke) => poke.number === 2)
+}
+
+console.log('Exercise 7:')
+console.log(game.party)
+
 /*
 Exercise 8
 1. Print the name of each Pokémon in your party.
@@ -96,6 +126,11 @@ Exercise 8
 
 Solve Exercise 8 here:
 */
+
+console.log('Exercise 8:')
+game.party.forEach((poke) => {
+	console.log(poke.name)
+})
 
 /*
 Exercise 9
@@ -105,6 +140,11 @@ Exercise 9
 
 Solve Exercise 9 here:
 */
+
+console.log('Exercise 9:')
+pokemon
+	.filter((poke) => poke.starter === true)
+	.forEach((starter) => console.log(starter.name))
 
 /*
 Exercise 10
@@ -117,6 +157,16 @@ After writing this method, call it and pass in a Pokemon object of your choice f
 
 Solve Exercise 10 here:
 */
+
+game.catchPokemon = function (pokemonObj) {
+	game.party.push(pokemonObj)
+}
+
+const newPokemon = pokemon.find((poke) => poke.number === 10)
+game.catchPokemon(newPokemon)
+
+console.log('Exercise 10:')
+console.log(game.party)
 
 /*
 Exercise 11
@@ -131,6 +181,13 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 11 here:
 */
 
+const anotherPokemon = pokemon.find((poke) => poke.number === 11)
+game.catchPokemon(anotherPokemon)
+
+console.log('Exercise 11:')
+console.log(game.party)
+console.log(game.items)
+
 /*
 Exercise 12
 1. Similar to Exercise 6, now complete gyms with a difficulty below 6. How will you approach this?
@@ -138,6 +195,15 @@ Exercise 12
 
 Solve Exercise 12 here:
 */
+
+game.gyms.forEach((gym) => {
+	if (gym.difficulty < 6) {
+		gym.completed = true
+	}
+})
+
+console.log('Exercise 12:')
+console.log(game.gyms)
 
 /*
 Exercise 13
@@ -162,6 +228,25 @@ For example, if five gym objects have a value of `true` on their `completed` pro
 Solve Exercise 13 here:
 */
 
+game.gymStatus = function () {
+	const gymTally = {
+		completed: 0,
+		incomplete: 0,
+	}
+
+	game.gyms.forEach((gym) => {
+		if (gym.completed === true) {
+			gymTally.completed++
+		} else {
+			gymTally.incomplete++
+		}
+	})
+
+	console.log(gymTally)
+}
+
+game.gymStatus()
+
 /*
 Exercise 14
 1. Add a `partyCount` method to `game` that counts the number of Pokémon in your party.
@@ -174,6 +259,12 @@ This method should:
 Solve Exercise 14 here:
 */
 
+game.partyCount = function () {
+	return game.party.length
+}
+
+console.log('Exercise 14: Party count is', game.partyCount())
+
 /*
 Exercise 15
 1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
@@ -182,6 +273,15 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
+game.gyms.forEach((gym) => {
+	if (gym.difficulty < 8) {
+		gym.completed = true
+	}
+})
+
+console.log('Exercise 15:')
+console.log(game.gyms)
+
 /*
 Exercise 16
 1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
@@ -189,3 +289,6 @@ Exercise 16
 
 Solve Exercise 16 here:
 */
+
+console.log('Exercise 16:')
+console.log(game)
